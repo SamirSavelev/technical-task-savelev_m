@@ -1,5 +1,5 @@
-import {subtractHours} from 'lib/date';
-import {IPagination} from 'types';
+import { subtractHours } from 'lib/date';
+import { IPagination } from 'types';
 
 const today = new Date();
 
@@ -282,4 +282,4 @@ const commentsPage3: IPagination = {
   ],
 };
 
-export {commentsPage1, commentsPage2, commentsPage3};
+export { commentsPage1, commentsPage2, commentsPage3 };

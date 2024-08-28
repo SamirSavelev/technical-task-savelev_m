@@ -1,0 +1,12 @@
+# Ignore artifacts
+/build
+coverage
+
+# Ignore all HTML files
+*.html
+
+# Ignore all dependencies
+/node_modules
+
+# Ignore style types
+*.scss.d.ts
