@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { Data } from '/types';
 
 interface CommentProps {
   comment: Data;
   children?: React.ReactNode;
+  onLike: (id: number) => void;
+  isLiked: boolean;
 }
 
 const CommentContainer = styled.div`
@@ -25,23 +27,29 @@ const CommentLikes = styled.div`
   color: #888;
 `;
 
-const LikeButton = styled.button`
+const LikeButton = styled.button<{ isLiked: boolean }>`
   margin-top: 5px;
+  color: ${(props) => (props.isLiked ? 'red' : 'black')};
 `;
 
-const Comment: React.FC<CommentProps> = ({ comment, children }) => {
-  const [likes, setLikes] = useState(comment.likes);
-
+const Comment: React.FC<CommentProps> = ({
+  comment,
+  children,
+  onLike,
+  isLiked,
+}) => {
   const handleLike = () => {
-    setLikes(likes + 1);
+    onLike(comment.id);
   };
 
   return (
     <CommentContainer>
       <CommentAuthor>Author ID: {comment.author}</CommentAuthor>
       <CommentText>{comment.text}</CommentText>
-      <CommentLikes>Likes: {likes}</CommentLikes>
-      <LikeButton onClick={handleLike}>Like</LikeButton>
+      <CommentLikes>Likes: {comment.likes}</CommentLikes>
+      <LikeButton onClick={handleLike} isLiked={isLiked}>
+        {isLiked ? 'Unlike' : 'Like'}
+      </LikeButton>
       {children}
     </CommentContainer>
   );
