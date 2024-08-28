@@ -18,7 +18,12 @@
     "sourceMap": true,
     "baseUrl": "./",
     "paths": {
-      "*": ["src/*"]
+      "/*": ["src/*"],
+      "data/*": ["src/data/*"],
+      "api/*": ["src/api/*"],
+      "assets/*": ["src/assets/*"],
+      "types": ["src/types"],
+      "lib/*": ["src/lib/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
