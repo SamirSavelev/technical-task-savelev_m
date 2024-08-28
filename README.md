@@ -1,50 +1,90 @@
-# React + TypeScript + Vite
+# Тестовое задание: React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Описание проекта
 
-Currently, two official plugins are available:
+Этот проект является реализацией тестового задания с использованием **React**, **TypeScript** и **Vite**. В проекте реализованы следующие функции:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Загрузка и отображение вложенных комментариев с поддержкой пагинации.
+- Подсчет общего количества лайков и комментариев.
+- Возможность лайкать комментарии с обновлением состояния интерфейса.
+- Запрос и отображение информации об авторах комментариев, включая их аватары и имена.
 
-## Expanding the ESLint configuration
+## Демо
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Демо-версия проекта доступна по следующей ссылке:
+[Посмотреть демо](https://SamirSavelev.github.io/technical-task-savelev_m/)
 
-- Configure the top-level `parserOptions` property like this:
+## Как запустить проект локально
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 1. Клонирование репозитория
+
+Клонируйте репозиторий на свой компьютер:
+
+```bash
+git clone https://github.com/SamirSavelev/technical-task-savelev_m.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2. Установка зависимостей
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Перейдите в папку проекта и установите зависимости:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+cd technical-task-savelev_m
+npm install
 ```
+
+### 3. Запуск проекта
+
+Для запуска проекта в режиме разработки выполните команду:
+
+```bash
+npm run dev
+```
+
+После этого откройте http://localhost:5173 в браузере, чтобы увидеть проект.
+
+### 4. Сборка проекта для продакшн
+
+Для создания продакшн-сборки проекта выполните команду:
+
+```bash
+npm run build
+```
+
+Сборка будет сохранена в папке dist.
+
+### 5. Предпросмотр собранного проекта
+
+Для просмотра собранной версии проекта в локальном режиме выполните команду:
+
+```bash
+npm run preview
+```
+
+## Деплой на GitHub Pages
+
+Проект настроен для автоматического деплоя на GitHub Pages. Для этого используется пакет gh-pages. Чтобы задеплоить проект, выполните команду:
+
+```bash
+npm run deploy
+```
+
+Эта команда создаст production-сборку и разместит её в ветке gh-pages, которая используется GitHub Pages для хостинга.
+
+### Используемые технологии
+
+- **React** — библиотека для создания пользовательских интерфейсов.
+- **TypeScript** — строгая типизация для разработки на JavaScript.
+- **Vite** — быстрый и современный сборщик проектов.
+- **@tanstack/react-query** — инструмент для работы с серверными данными в React.
+- **@emotion/styled** — библиотека для стилизации компонентов с использованием CSS-in-JS.
+- **gh-pages** — утилита для деплоя на GitHub Pages.
+
+### Структура проекта
+
+- **src/** — директория с исходным кодом:
+  - **components/** — React-компоненты.
+  - **api/** — запросы к API.
+  - **data/** — мок-данные для тестирования.
+  - **assets/** — статические ресурсы (изображения и иконки).
+  - **ui-kit/** — компоненты пользовательского интерфейса.
