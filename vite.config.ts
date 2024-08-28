@@ -5,6 +5,9 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   base: '/technical-task-savelev_m/',
+  build: {
+    outDir: 'dist',
+  },
   resolve: {
     alias: {
       app: path.resolve(__dirname, './src/app'),
