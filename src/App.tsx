@@ -1,21 +1,22 @@
-import { useEffect } from 'react';
-import './App.css';
-import getAuthorsRequest from './api/authors/getAuthorsRequest';
-import getCommentsRequest from './api/comments/getCommentsRequest';
+import React from 'react';
+import styled from '@emotion/styled';
+
 import useMockAdapter from './api/useMockAdapter';
+import CommentList from './components/CommentList/CommentList';
 
-function App() {
+const AppContainer = styled.div`
+  padding: 20px;
+`;
+
+const App: React.FC = () => {
   useMockAdapter();
-  useEffect(() => {
-    getAuthorsRequest().then((data) => {
-      console.log('getAuthorsRequest data', data);
-    });
-    getCommentsRequest(1).then((data) => {
-      console.log('getCommentsRequest data', data);
-    });
-  }, []);
 
-  return <></>;
-}
+  return (
+    <AppContainer>
+      <h1>Comments</h1>
+      <CommentList />
+    </AppContainer>
+  );
+};
 
 export default App;
