@@ -23,7 +23,10 @@
       "api/*": ["src/api/*"],
       "assets/*": ["src/assets/*"],
       "types": ["src/types"],
-      "lib/*": ["src/lib/*"]
+      "lib/*": ["src/lib/*"],
+      "app/*": ["src/app/*"],
+      "components/*": ["src/components/*"],
+      "ui-kit": ["src/ui-kit"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],

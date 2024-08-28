@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import styled from '@emotion/styled';
+
 import { useQuery } from '@tanstack/react-query';
-import { Data, IPagination } from '/types';
+import { Data, IPagination } from 'types';
 import getCommentsRequest from 'api/comments/getCommentsRequest';
 import Comment from '../Comment/Comment';
+import { CommentListContainer, Header } from './styles';
+import preloader from 'assets/svg/preloader.svg';
+import { Flex } from '../Flex/Flex';
+import HeartIcon from '../HeartIcon/HeartIcon';
+import { Button, Text } from 'ui-kit';
+import { Content } from './styles/Content';
 
-const CommentListContainer = styled.div`
-  margin-top: 20px;
-`;
-
-const CommentList: React.FC = () => {
+const CommentList = () => {
   const [comments, setComments] = useState<Data[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [likedComments, setLikedComments] = useState<number[]>([]);
@@ -67,21 +69,38 @@ const CommentList: React.FC = () => {
   const totalLikes = comments.reduce((sum, comment) => sum + comment.likes, 0);
   const totalComments = comments.length;
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error loading comments...</div>;
-  }
-
   return (
     <CommentListContainer>
-      <div>Total Likes: {totalLikes}</div>
-      <div>Total Comments: {totalComments}</div>
-      {renderComments(null)}
+      <Header>
+        <Text size="medium" weight="bold" color="white">
+          {totalComments} комментариев
+        </Text>
+        <Flex gap="6px" align="center">
+          <HeartIcon strokeColor="rgba(255, 255, 255, 0.5)" />
+          <Text size="medium" weight="bold" color="white">
+            {totalLikes}
+          </Text>
+        </Flex>
+      </Header>
+      {isLoading && (
+        <Flex height="100%" width="100%" align="center" justify="center">
+          <img src={preloader} height={45} />
+        </Flex>
+      )}
+      {isError && (
+        <Flex height="100%" width="100%" align="center" justify="center">
+          <Text size="large" color="white">
+            Ошибка. Попробуйте перезагрузить страницу
+          </Text>
+        </Flex>
+      )}
+      {!isLoading && !isError && <Content>{renderComments(null)}</Content>}
       {(data?.pagination?.page || 0) < (data?.pagination?.total_pages || 0) && (
-        <button onClick={handleLoadMore}>Load More</button>
+        <Flex width="100%" align="center" justify="center">
+          <Button onClick={handleLoadMore} variant="secondary" width="200px">
+            Загрузить еще
+          </Button>
+        </Flex>
       )}
     </CommentListContainer>
   );

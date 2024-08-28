@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Data } from '/types';
+import { Data } from 'types';
+import HeartIcon from '../HeartIcon/HeartIcon';
 
 interface CommentProps {
   comment: Data;
@@ -27,11 +28,6 @@ const CommentLikes = styled.div`
   color: #888;
 `;
 
-const LikeButton = styled.button<{ isLiked: boolean }>`
-  margin-top: 5px;
-  color: ${(props) => (props.isLiked ? 'red' : 'black')};
-`;
-
 const Comment: React.FC<CommentProps> = ({
   comment,
   children,
@@ -47,9 +43,8 @@ const Comment: React.FC<CommentProps> = ({
       <CommentAuthor>Author ID: {comment.author}</CommentAuthor>
       <CommentText>{comment.text}</CommentText>
       <CommentLikes>Likes: {comment.likes}</CommentLikes>
-      <LikeButton onClick={handleLike} isLiked={isLiked}>
-        {isLiked ? 'Unlike' : 'Like'}
-      </LikeButton>
+      <HeartIcon filled={isLiked} onClick={handleLike} />
+
       {children}
     </CommentContainer>
   );
